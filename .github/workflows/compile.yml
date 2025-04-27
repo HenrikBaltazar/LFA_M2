@@ -19,7 +19,7 @@ jobs:
     - name: Configurar GraalVM
       uses: actions/setup-java@v2
       with:
-        java-version: '17'
+        java-version: '21'
         distribution: 'graalvm'
 
     - name: Instalar Native Image
