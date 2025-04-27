@@ -29,13 +29,11 @@ jobs:
 
     - name: Criar JAR
       run: |
-        REPO_NAME=${{ github.repository }}
-        jar cvf build/$REPO_NAME.jar -C build .
+        jar cvf build/${{ github.repository }}.jar -C build .
 
     - name: Criar EXE com jpackage
       run: |
-        REPO_NAME=${{ github.repository }}
-        jpackage --input build --name $REPO_NAME --main-jar $REPO_NAME.jar --main-class your.main.Class --type exe --dest build/
+        jpackage --input build --name ${{ github.repository }} --main-jar $${{ github.repository }}.jar --main-class org.example.Main.Class --type exe --dest build/
 
     - name: Fazer Upload dos Arquivos JAR e EXE
       uses: actions/upload-artifact@v4
