@@ -16,16 +16,16 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
-    - name: Configurar JDK Temurin 11
+    - name: Configurar JDK
       uses: actions/setup-java@v2
       with:
-        java-version: '11'  # Usando Temurin 11
-        distribution: 'adoptopenjdk'
+        java-version: '21'
+        distribution: 'adopt'
 
     - name: Compilar Projeto Java
       run: |
         mkdir -p build
-        javac -d build src/**/*.java  # Compilar os arquivos Java
+        javac -d build src/main/java/org/example/*.java
 
     - name: Criar JAR
       run: |
