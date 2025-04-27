@@ -29,12 +29,12 @@ jobs:
 
     - name: Criar JAR
       run: |
-        REPO_NAME=$(basename ${{ github.repository }})
+        REPO_NAME=$(Split-Path -Leaf $env:GITHUB_REPOSITORY)
         jar cvf build/$REPO_NAME.jar -C build .
 
     - name: Criar EXE com jpackage
       run: |
-        REPO_NAME=$(basename ${{ github.repository }})
+        REPO_NAME=$(Split-Path -Leaf $env:GITHUB_REPOSITORY)
         jpackage --input build --name $REPO_NAME --main-jar $REPO_NAME.jar --main-class your.main.Class --type exe --dest build/
 
     - name: Fazer Upload dos Arquivos JAR e EXE
