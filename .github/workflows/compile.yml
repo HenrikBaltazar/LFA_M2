@@ -1,4 +1,4 @@
-name: Compile Java Code
+name: Compilar Código Java para EXE com GraalVM
 
 on:
   push:
@@ -11,37 +11,38 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
-    - name: Set up JDK
+    - name: Configurar GraalVM
       uses: actions/setup-java@v2
       with:
-        java-version: '8' 
-        distribution: 'temurin'
+        java-version: '17'
+        distribution: 'graalvm'
 
-    - name: Build Java Project
+    - name: Instalar Native Image
+      run: |
+        gu install native-image
+
+    - name: Compilar Projeto Java
       run: |
         mkdir -p build
-        javac -d build src/main/java/org/example/*.java # Assuming your code is under `src/` folder
+        javac -d build src/**/*.java  # Compilar os arquivos Java
         
-    - name: Create JAR file
+    - name: Criar Arquivo JAR
       run: |
-        jar cfm build/$(basename ${{ github.repository }}).jar MANIFEST.MF -C build .
+        REPO_NAME=$(basename ${{ github.repository }})
+        jar cvf build/$REPO_NAME.jar -C build .
 
-    - name: Download Launch4j
+    - name: Compilar para Imagem Nativa (EXE)
       run: |
-        curl -L -o launch4j.zip https://github.com/launch4j/launch4j/releases/download/3.15/launch4j-3.15-linux-x64.tar.gz
-        unzip launch4j.zip
+        REPO_NAME=$(basename ${{ github.repository }})
+        native-image --no-fallback -H:Name=build/$REPO_NAME --enable-all-security-services --verbose -cp build/$REPO_NAME.jar
 
-    - name: Generate EXE with Launch4j
-      run: |
-        java -jar launch4j/launch4j-3.15/launch4j --jar build/$(basename ${{ github.repository }}).jar --outfile build/$(basename ${{ github.repository }}).exe --icon icon.ico
-        
-    - name: Upload JAR and EXE as artifacts
-      uses: actions/upload-artifact@v4
+    - name: Fazer Upload dos Arquivos JAR e EXE
+      uses: actions/upload-artifact@v2
       with:
-        name: compiled-files
+        name: arquivos-compilados
         path: build/
