@@ -33,7 +33,7 @@ jobs:
 
     - name: Criar EXE com jpackage
       run: |
-        jpackage --input build --name lfa --main-jar lfa.jar --main-class org.example.Main.Class --type exe --dest build/
+        jpackage --input build --name lfa --main-jar build/lfa.jar --main-class org.example.Main.Class --type exe --dest build/
 
     - name: Fazer Upload dos Arquivos JAR e EXE
       uses: actions/upload-artifact@v4
