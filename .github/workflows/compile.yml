@@ -34,7 +34,7 @@ jobs:
     - name: Download Launch4j
       run: |
         curl -L -o launch4j.zip https://github.com/launch4j/launch4j/releases/download/3.15/launch4j-3.15-linux-x64.tar.gz
-        tar -xvzf launch4j.zip
+        unzip launch4j.zip
 
     - name: Generate EXE with Launch4j
       run: |
