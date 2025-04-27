@@ -19,7 +19,8 @@ jobs:
     - name: Set up JDK
       uses: actions/setup-java@v2
       with:
-        java-version: '8' # Or specify the version you need
+        java-version: '8' 
+        distribution: 'temurin'
 
     - name: Build Java Project
       run: |
