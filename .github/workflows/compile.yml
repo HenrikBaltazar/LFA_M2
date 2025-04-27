@@ -42,7 +42,7 @@ jobs:
         native-image --no-fallback -H:Name=build/$REPO_NAME --enable-all-security-services --verbose -cp build/$REPO_NAME.jar
 
     - name: Fazer Upload dos Arquivos JAR e EXE
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: arquivos-compilados
         path: build/
