@@ -81,7 +81,7 @@ public class GUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Analyzer analyzer = new Analyzer(textInput.getText());
-                textOutput.setText(analyzer.Analyzer());
+                textOutput.setText(analyzer.AnalizaEntrada(textInput.getText()));
             }
         });
 
