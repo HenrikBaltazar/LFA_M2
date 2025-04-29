@@ -5,6 +5,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.Objects;
 
 public class GUI extends JFrame {
@@ -25,6 +26,11 @@ public class GUI extends JFrame {
         setTitle("Reconhecedor de Linguagem Regular");
         setSize(W, H);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        URL iconUrl = Main.class.getResource("/alessandro.png");
+        if(iconUrl != null) {
+            ImageIcon icon = new ImageIcon(iconUrl);
+            setIconImage(icon.getImage());
+        }
         setLocationRelativeTo(null);
 
         JPanel panel = new JPanel();
