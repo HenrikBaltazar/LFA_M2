@@ -40,9 +40,6 @@ public class GUI extends JFrame {
 
         JPanel inputPanel = new JPanel();
         inputPanel.setLayout(new BorderLayout(0, 5));
-        JLabel labelInput = new JLabel("Insira o texto:");
-        labelInput.setFont(LABEL_FONT);
-        inputPanel.add(labelInput, BorderLayout.NORTH);
 
         textInput = new JTextArea(TEXT_AREA_ROWS, 0);
         textInput.setFont(TEXT_FONT);
@@ -55,7 +52,7 @@ public class GUI extends JFrame {
 
 
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
+        buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT, 0, 0));
         buttonAnalyze = new JButton("✨ Analisar");
         buttonAnalyze.setFont(BUTTON_FONT);
         buttonClean = new JButton("❌ Limpar");
@@ -66,8 +63,8 @@ public class GUI extends JFrame {
         panel.add(buttonPanel, BorderLayout.CENTER);
 
         JPanel outputPanel = new JPanel();
-        outputPanel.setLayout(new BorderLayout(0, 5));
-        JLabel labelOutput = new JLabel("Resultado da Análise:");
+        outputPanel.setLayout(new BorderLayout(0, 0));
+        JLabel labelOutput = new JLabel("Tokens:");
         labelOutput.setFont(LABEL_FONT);
         outputPanel.add(labelOutput, BorderLayout.NORTH);
 
