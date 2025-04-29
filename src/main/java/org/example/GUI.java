@@ -5,13 +5,14 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 public class GUI extends JFrame {
     private static final int H = 800;
     private static final int W = 1000;
-    private static final Font LABEL_FONT = new Font("Arial", Font.PLAIN, 24);
-    private static final Font TEXT_FONT = new Font("Arial", Font.PLAIN, 20);
-    private static final Font BUTTON_FONT = new Font("Arial", Font.PLAIN, 22);
+    private static final Font LABEL_FONT = new Font("SansSerif", Font.PLAIN, 24);
+    private static final Font TEXT_FONT = new Font("SansSerif", Font.PLAIN, 20);
+    private static final Font BUTTON_FONT = new Font("SansSerif", Font.PLAIN, 22);
     private static final int PADDING = 10;
     private static final int TEXT_AREA_ROWS = 10;
 
@@ -51,7 +52,7 @@ public class GUI extends JFrame {
         buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
         buttonAnalyze = new JButton("✨ Analisar");
         buttonAnalyze.setFont(BUTTON_FONT);
-        buttonClean = new JButton("\uD83E\uDDF9 Limpar");
+        buttonClean = new JButton("❌ Limpar");
         buttonClean.setFont(BUTTON_FONT);
         buttonPanel.add(buttonAnalyze);
         buttonPanel.add(buttonClean);
