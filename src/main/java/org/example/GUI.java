@@ -17,11 +17,29 @@ public class GUI extends JFrame {
     private static final Font DIAGRAMA_FONT = new Font("SansSerif", Font.PLAIN, 16);
     private static final int PADDING = 10;
     private static final int TEXT_AREA_ROWS = 10;
+    private int non_suspicious_counter = 0;
 
     private JTextArea textInput;
     private JTextArea textOutput;
     private JButton buttonAnalyze;
     private JButton buttonClean;
+
+    private void newImageWindow(ImageIcon icon, URL iconUrl, String title) {
+        Image scaled = icon.getImage().getScaledInstance(600, 400, Image.SCALE_SMOOTH);
+        ImageIcon scaledIcon = new ImageIcon(scaled);
+
+        JFrame frameImagem = new JFrame(title);
+        frameImagem.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frameImagem.setSize(620, 440);
+
+        JLabel labelImagem = new JLabel(scaledIcon);
+        if(iconUrl != null) {
+            frameImagem.setIconImage(icon.getImage());
+        }
+        frameImagem.add(labelImagem);
+        frameImagem.setLocationRelativeTo(null);
+        frameImagem.setVisible(true);
+    }
 
     public GUI() {
         setTitle("Reconhecedor de Linguagem Regular");
@@ -74,8 +92,13 @@ public class GUI extends JFrame {
 
         JPanel outputPanel = new JPanel();
         outputPanel.setLayout(new BorderLayout(0, 0));
-        JLabel labelOutput = new JLabel("Tokens:");
+        JButton labelOutput = new JButton("Tokens:");
         labelOutput.setFont(LABEL_FONT);
+        labelOutput.setFocusPainted(false);
+        labelOutput.setBorderPainted(false);
+        labelOutput.setContentAreaFilled(false);
+        labelOutput.setOpaque(false);
+        labelOutput.setHorizontalAlignment(SwingConstants.LEFT);
         outputPanel.add(labelOutput, BorderLayout.NORTH);
 
         textOutput = new JTextArea(TEXT_AREA_ROWS, 0);
@@ -95,25 +118,8 @@ public class GUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-
-
                     ImageIcon icon = new ImageIcon(getClass().getResource("/alessandro.png"));
-
-                    Image scaled = icon.getImage().getScaledInstance(600, 400, Image.SCALE_SMOOTH);
-                    ImageIcon scaledIcon = new ImageIcon(scaled);
-
-                    JFrame frameImagem = new JFrame("Diagrama");
-                    frameImagem.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                    frameImagem.setSize(620, 440);
-
-                    JLabel labelImagem = new JLabel(scaledIcon);
-                    if(iconUrl != null) {
-                        frameImagem.setIconImage(icon.getImage());
-                    }
-                    frameImagem.add(labelImagem);
-                    frameImagem.setLocationRelativeTo(null);
-                    frameImagem.setVisible(true);
-
+                    newImageWindow(icon,iconUrl,"Diagrama");
                 } catch (Exception ex) {
                     System.out.println("Erro ao carregar imagem: " + ex.getMessage());
                 }
@@ -133,6 +139,22 @@ public class GUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 textInput.setText("");
                 textOutput.setText("");
+            }
+        });
+        
+        labelOutput.addActionListener( new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (non_suspicious_counter == 4) {
+                    try {
+                        ImageIcon icon = new ImageIcon(getClass().getResource("/alessandro.png"));
+                        newImageWindow(icon,iconUrl,"Diagrama");
+                    } catch (Exception ex) {
+                        System.out.println("Erro ao carregar imagem: " + ex.getMessage());
+                    }
+                    non_suspicious_counter = 0;
+                }
+                non_suspicious_counter++;
             }
         });
 
