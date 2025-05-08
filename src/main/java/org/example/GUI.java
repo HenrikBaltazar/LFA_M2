@@ -100,7 +100,7 @@ public class GUI extends JFrame {
                     Image scaled = icon.getImage().getScaledInstance(600, 400, Image.SCALE_SMOOTH);
                     ImageIcon scaledIcon = new ImageIcon(scaled);
 
-                    JFrame frameImagem = new JFrame("Imagem carregada");
+                    JFrame frameImagem = new JFrame("Diagrama");
                     frameImagem.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                     frameImagem.setSize(620, 440);
 
