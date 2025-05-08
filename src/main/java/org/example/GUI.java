@@ -95,6 +95,8 @@ public class GUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
+
+
                     ImageIcon icon = new ImageIcon(getClass().getResource("/alessandro.png"));
 
                     Image scaled = icon.getImage().getScaledInstance(600, 400, Image.SCALE_SMOOTH);
@@ -105,8 +107,11 @@ public class GUI extends JFrame {
                     frameImagem.setSize(620, 440);
 
                     JLabel labelImagem = new JLabel(scaledIcon);
+                    if(iconUrl != null) {
+                        frameImagem.setIconImage(icon.getImage());
+                    }
                     frameImagem.add(labelImagem);
-
+                    frameImagem.setLocationRelativeTo(null);
                     frameImagem.setVisible(true);
 
                 } catch (Exception ex) {
