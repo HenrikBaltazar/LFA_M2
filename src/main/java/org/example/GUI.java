@@ -14,6 +14,7 @@ public class GUI extends JFrame {
     private static final Font LABEL_FONT = new Font("SansSerif", Font.PLAIN, 24);
     private static final Font TEXT_FONT = new Font("SansSerif", Font.PLAIN, 20);
     private static final Font BUTTON_FONT = new Font("SansSerif", Font.PLAIN, 22);
+    private static final Font DIAGRAMA_FONT = new Font("SansSerif", Font.PLAIN, 16);
     private static final int PADDING = 10;
     private static final int TEXT_AREA_ROWS = 10;
 
@@ -32,6 +33,15 @@ public class GUI extends JFrame {
             setIconImage(icon.getImage());
         }
         setLocationRelativeTo(null);
+
+        JMenuBar menuBar = new JMenuBar();
+        setJMenuBar(menuBar);
+        JMenu fileMenu = new JMenu("Diagrama");
+        JMenuItem openItem = new JMenuItem("Abrir");
+        fileMenu.add(openItem);
+        menuBar.add(fileMenu);
+        fileMenu.setFont(DIAGRAMA_FONT);
+        openItem.setFont(DIAGRAMA_FONT);
 
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout(PADDING, PADDING));
@@ -80,6 +90,30 @@ public class GUI extends JFrame {
 
         add(panel);
         setVisible(true);
+
+        openItem.addActionListener( new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    ImageIcon icon = new ImageIcon(getClass().getResource("/alessandro.png"));
+
+                    Image scaled = icon.getImage().getScaledInstance(600, 400, Image.SCALE_SMOOTH);
+                    ImageIcon scaledIcon = new ImageIcon(scaled);
+
+                    JFrame frameImagem = new JFrame("Imagem carregada");
+                    frameImagem.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    frameImagem.setSize(620, 440);
+
+                    JLabel labelImagem = new JLabel(scaledIcon);
+                    frameImagem.add(labelImagem);
+
+                    frameImagem.setVisible(true);
+
+                } catch (Exception ex) {
+                    System.out.println("Erro ao carregar imagem: " + ex.getMessage());
+                }
+            }
+        });
 
         buttonAnalyze.addActionListener(new ActionListener() {
             @Override
