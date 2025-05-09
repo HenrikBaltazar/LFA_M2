@@ -25,12 +25,12 @@ public class GUI extends JFrame {
     private JButton buttonClean;
 
     private void newImageWindow(ImageIcon icon, URL iconUrl, String title) {
-        Image scaled = icon.getImage().getScaledInstance(600, 400, Image.SCALE_SMOOTH);
+        Image scaled = icon.getImage().getScaledInstance(800, 600, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaled);
 
         JFrame frameImagem = new JFrame(title);
         frameImagem.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frameImagem.setSize(620, 440);
+        frameImagem.setSize(800, 600);
 
         JLabel labelImagem = new JLabel(scaledIcon);
         if(iconUrl != null) {
@@ -118,7 +118,7 @@ public class GUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    ImageIcon icon = new ImageIcon(getClass().getResource("/alessandro.png"));
+                    ImageIcon icon = new ImageIcon(getClass().getResource("/diagrama.png"));
                     newImageWindow(icon,iconUrl,"Diagrama");
                 } catch (Exception ex) {
                     System.out.println("Erro ao carregar imagem: " + ex.getMessage());
@@ -141,14 +141,14 @@ public class GUI extends JFrame {
                 textOutput.setText("");
             }
         });
-        
+
         labelOutput.addActionListener( new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (non_suspicious_counter == 4) {
                     try {
                         ImageIcon icon = new ImageIcon(getClass().getResource("/alessandro.png"));
-                        newImageWindow(icon,iconUrl,"Diagrama");
+                        newImageWindow(icon,iconUrl,"❤ ❤ ❤ ❤ ❤ ❤");
                     } catch (Exception ex) {
                         System.out.println("Erro ao carregar imagem: " + ex.getMessage());
                     }
